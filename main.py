@@ -54,8 +54,6 @@ def check_tickets():
         if previous_stock_state is None:
             previous_stock_state = current_stock_state
             print('初回チェック完了。基準の状態を記憶しました。', flush=True)
-            # テスト用に初回でも強制通知を送りたい場合は、下の行のコメントアウトを外せます
-            # send_line_notification("【テスト】チケット監視ボットが起動しました！")
         elif previous_stock_state != current_stock_state:
             print('【検知】在庫の変動を検知しました！', flush=True)
             previous_stock_state = current_stock_state
@@ -68,7 +66,7 @@ def check_tickets():
 def background_checker():
     while True:
         check_tickets()
-        time.sleep(300)
+        time.sleep(60)  # ← ここを60秒（1分）に変更しました！
 
 @app.route('/')
 def home():
